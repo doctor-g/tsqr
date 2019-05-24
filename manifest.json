@@ -1,0 +1,7 @@
+{
+  "name": "tsqr",
+  "short_name": "tsqr",
+  "description": "Randomizer for Thunderstone Quest",
+  "start_url": "/",
+  "display": "standalone"
+}
