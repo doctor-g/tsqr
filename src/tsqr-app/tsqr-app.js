@@ -1,6 +1,7 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import './card-data.js';
 import './quest-selector.js';
+import './hero-randomizer.js';
 
 /**
  * @customElement
@@ -19,6 +20,10 @@ class TsqrApp extends PolymerElement {
         quests="[[quests]]"
         selected="{{questFilter}}">
       </quest-selector>
+
+      <hero-randomizer>
+      </hero-randomizer>
+
       <h2>Hello [[_sets(cards)]]!</h2>
     `;
   }
