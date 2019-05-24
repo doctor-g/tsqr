@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import '@polymer/paper-button/paper-button.js';
+import { selectRandomlyFrom } from './randomizer.js';
 
 /**
  * @customElement
@@ -41,14 +42,7 @@ class MarketplaceRandomizer extends LitElement {
 
     _onClickFourItem() {
         var oldVal = this._items;
-        this._items = [];
-        while (this._items.length < 4) {
-            var index = Math.floor(Math.random() * this.cards.length);
-            var card = this.cards[index];
-            if (this._items.indexOf(card) == -1) {
-                this._items.push(card);
-            }
-        }
+        this._items = selectRandomlyFrom(this.cards, 4, true);
         this.requestUpdate('_items', oldVal);
     }
 

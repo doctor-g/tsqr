@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import '@polymer/paper-button/paper-button.js';
+import { selectRandomlyFrom } from './randomizer.js';
 
 /**
  * @customElement
@@ -60,8 +61,7 @@ class HeroRandomizer extends LitElement {
   }
 
   _onClickNormal() {
-    this.selected = [];
-    this._pickRandomHeroes();
+    this.selected = selectRandomlyFrom(this.cards, 4, true);
     this.requestUpdate('selected');
   }
 
@@ -78,8 +78,7 @@ class HeroRandomizer extends LitElement {
 
   _onClickFourClass() {
     do {
-      this.selected = [];
-      this._pickRandomHeroes();
+      this.selected = selectRandomlyFrom(this.cards, 4, false);
     } while (!this._areFourClassesSelected());
     this.requestUpdate('selected');
   }
