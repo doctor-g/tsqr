@@ -45,13 +45,13 @@ class QuestSelector extends LitElement {
   _handleClick(e) {
     var quest = e.target.getAttribute("quest");
     if (e.target.checked) {
-      this.quests.push(quest);
+      this.selected.push(quest);
     }
     else {
       var index = this.selected.indexOf(quest);
       this.selected.splice(index, 1);
-      this.requestUpdate('selected', this.selected);
     }
+    this.requestUpdate('selected');
   }
 
 }
