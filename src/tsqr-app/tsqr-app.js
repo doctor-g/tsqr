@@ -3,6 +3,7 @@ import './hero-randomizer.js';
 import './marketplace-randomizer.js';
 import './monster-randomizer.js';
 import './guardian-randomizer.js';
+import './dungeon-randomizer.js';
 
 /**
  * @customElement
@@ -33,6 +34,8 @@ class TsqrApp extends LitElement {
       </monster-randomizer>
       <guardian-randomizer .cards="${this._filterCategory(this.cards, 'Guardians')}">
       </guardian-randomizer>
+      <dungeon-randomizer .cards="${this._filterCategory(this.cards, 'Dungeon Rooms')}">
+      </dungeon-randomizer>
     `;
   }
 
