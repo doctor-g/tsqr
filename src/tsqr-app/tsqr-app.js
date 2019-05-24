@@ -23,9 +23,6 @@ class TsqrApp extends PolymerElement {
 
       <hero-randomizer cards="[[_filterCategory(cards, 'Heroes')]]">
       </hero-randomizer>
-
-      <br/>
-      [[_filterCategory(cards, 'Heroes')]]
     `;
   }
   static get properties() {
