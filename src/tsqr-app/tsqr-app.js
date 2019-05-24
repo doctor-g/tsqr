@@ -21,16 +21,17 @@ class TsqrApp extends PolymerElement {
         selected="{{questFilter}}">
       </quest-selector>
 
-      <hero-randomizer>
+      <hero-randomizer cards="[[_filterCategory(cards, 'Heroes')]]">
       </hero-randomizer>
 
-      <h2>Hello [[_sets(cards)]]!</h2>
+      <br/>
+      [[_filterCategory(cards, 'Heroes')]]
     `;
   }
   static get properties() {
     return {
       cards: {
-        type: Object
+        type: Array
       },
       quests: {
         type: Array,
@@ -51,23 +52,10 @@ class TsqrApp extends PolymerElement {
     };
   }
 
-  _sets(cards) {
-    if (cards) {
-      var questSet = new Set();
-      Object.entries(cards).forEach(cardType => {
-        Object.entries(cardType[1]).forEach(card => {
-          questSet.add(card[1]["Quest"]);
-        })
-      });
-
-      var result = '';
-      questSet.forEach(item => result += item);
-      return result;
-    }
-    else {
-      return "Cards not loaded.";
-    }
+  _filterCategory(cards, category) {
+    return cards.filter(card => card.Category==category);
   }
+
 }
 
 window.customElements.define('tsqr-app', TsqrApp);

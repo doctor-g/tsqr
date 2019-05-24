@@ -1,0 +1,25 @@
+Excludes card name:
+jq 'to_entries[] | {(.key): [.value[]]}' cards.json | head -10
+
+
+This does the trick!
+jq 'to_entries[] | {(.key): [{"Name": (.value|to_entries[]|.key)} + .value[]]}' cards.json 
+--> revised.json
+
+
+Close except for the names being wrong
+jq 'to_entries[] | .value | to_entries[] | [{"Name": (.value|to_entries[]|.key)} + .value]' cards.json 
+
+Conversion dropping the leading "Heroes" etc. categories:
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + .value]' cards.json 
+
+Drop the fields we don't want:
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + (.value | del(.Cost,.Types,.Keywords,.Races))]' cards.json
+
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + (.value | del(.Cost,.Types,.Keywords,.Races,.Summary,.Alert))]' cards.json
+
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + (.value |del(.Cost,.Types,.Keywords,.Races,.Summary,.Alert,.Light,.Battle,.Special))]' cards.json 
+
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + (.value | del(.Cost,.Types,.Keywords,.Races,.Summary,.Alert,.Light,.Battle,.Spoils,.Special))]' cards.json 
+
+jq '[to_entries[] | .value | to_entries[] | {"Name": .key} + (.value | del(.Cost,.Types,.Keywords,.Races,.Summary,.Alert,.Light,.Battle,.Spoils,.Special,."After Battle",.Reward,.Entry))]' cards.json 
