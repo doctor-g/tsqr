@@ -1,5 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import './card-data.js';
+import './quest-selector.js';
 
 /**
  * @customElement
@@ -14,7 +15,10 @@ class TsqrApp extends PolymerElement {
         }
       </style>
       <card-data cards="{{cards}}"></card-data>
-      [[foo("bar")]]
+      <quest-selector 
+        quests="[[quests]]"
+        selected="{{questFilter}}">
+      </quest-selector>
       <h2>Hello [[_sets(cards)]]!</h2>
     `;
   }
@@ -22,12 +26,24 @@ class TsqrApp extends PolymerElement {
     return {
       cards: {
         type: Object
+      },
+      quests: {
+        type: Array,
+        value: [
+          'A Mirror in the Dark',
+          'Total Eclipse of the Sun',
+          'Risen from the Mire',
+          'At the Foundations of the World',
+          'Ripples in Time',
+          'Promos',
+          'Bandits of Black Rock'
+        ]
+      },
+      questFilter: {
+        type: Array,
+        value: function() { return [] }
       }
     };
-  }
-
-  foo(mesg) {
-    return "FOO";
   }
 
   _sets(cards) {
