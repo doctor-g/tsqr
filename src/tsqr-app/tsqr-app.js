@@ -32,7 +32,16 @@ class TsqrApp extends PolymerElement {
 
   _sets(cards) {
     if (cards) {
-      return cards["Heroes"]["Outlands"]["Quest"];
+      var questSet = new Set();
+      Object.entries(cards).forEach(cardType => {
+        Object.entries(cardType[1]).forEach(card => {
+          questSet.add(card[1]["Quest"]);
+        })
+      });
+
+      var result = '';
+      questSet.forEach(item => result += item);
+      return result;
     }
     else {
       return "Cards not loaded.";
