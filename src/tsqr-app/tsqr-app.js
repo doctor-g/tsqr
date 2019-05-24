@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import './hero-randomizer.js';
 import './marketplace-randomizer.js';
 import './monster-randomizer.js';
+import './guardian-randomizer.js';
 
 /**
  * @customElement
@@ -30,6 +31,8 @@ class TsqrApp extends LitElement {
       </marketplace-randomizer>
       <monster-randomizer .cards="${this._filterCategory(this.cards, 'Monsters')}">
       </monster-randomizer>
+      <guardian-randomizer .cards="${this._filterCategory(this.cards, 'Guardians')}">
+      </guardian-randomizer>
     `;
   }
 
