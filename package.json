@@ -9,6 +9,7 @@
     "@polymer/paper-icon-button": "github:PolymerElements/paper-icon-button",
     "@polymer/paper-radio-button": "github:PolymerElements/paper-radio-button",
     "@polymer/paper-radio-group": "github:PolymerElements/paper-radio-group",
+    "@polymer/paper-toast": "github:PolymerElements/paper-toast",
     "@polymer/polymer": "^3.0.0"
   },
   "devDependencies": {

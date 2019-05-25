@@ -8,6 +8,7 @@ import './guardian-randomizer.js';
 import './dungeon-randomizer.js';
 import { sharedStyles } from './shared-styles.js';
 import { cardDB } from './card-db.js';
+import './sw-update-toast.js';
 
 /**
  * @customElement
@@ -74,6 +75,8 @@ class TsqrApp extends LitElement {
         .cards="${this._filterCategory(this.cards, ['Dungeon Rooms'])}"
         class="randomizer">
       </dungeon-randomizer>
+
+      <sw-update-toast></sw-update-toast>
     `;
   }
 
