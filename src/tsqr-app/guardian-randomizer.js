@@ -36,7 +36,7 @@ class GuardianRandomizer extends LitElement {
           </style>
           <category-heading .disabled="${this._isDisabled(this.cards)}" @refresh="${this.randomize}">Guardian</category-heading>
           ${this._guardian?html`
-            ${this._guardian.Name}, Level ${this._level}}
+            ${this._guardian.Name}, Level ${this._level}
           `:html``}
         `;
     }
