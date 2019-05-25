@@ -30,7 +30,7 @@ class HeroRandomizer extends LitElement {
     super();
     this.cards = [];
     this.selected = [];
-    this._classes = ["Rogue", "Cleric", "Fighter", "Wizard"];
+    this._classes = ["Cleric", "Fighter", "Rogue", "Wizard"];
   }
 
   static get styles() {
