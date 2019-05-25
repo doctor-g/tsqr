@@ -1,42 +1,55 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <base href="/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Thunderstone Quest Randomizer</title>
-    <meta name="description" content="Randomizer for Thunderstone Quest">
+  <base href="/">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="manifest.json">
+  <title>Thunderstone Quest Randomizer</title>
+  <meta name="description" content="Randomizer for Thunderstone Quest">
 
-    <script>
-        window.MyAppGlobals = { rootPath: '/tsqr/'};
-  
-         // Load and register pre-caching Service Worker
-         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function() {
-            navigator.serviceWorker.register('service-worker.js', {
-              scope: MyAppGlobals.rootPath
-            });
-          });
-        }
-      </script>
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
 
-      <!-- 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11642955-23"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-11642955-23');
+  </script>
+
+  <script>
+    window.MyAppGlobals = { rootPath: '/tsqr/' };
+
+    // Load and register pre-caching Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js', {
+          scope: MyAppGlobals.rootPath
+        });
+      });
+    }
+  </script>
+
+  <!-- 
       gh-pages seems to balk at the "@webcomponents" directory, so use the unpkg CDN
       instead, together with node-style module resolution in polymer.json.
     -->
-    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
 
-    <script type="module" src="src/tsqr-app/tsqr-app.js" crossorigin></script>
-  </head>
-  <body>
-    <tsqr-app></tsqr-app>
-    <noscript>
-        Please enable JavaScript to view this site.
-      </noscript>
-  </body>
+  <script type="module" src="src/tsqr-app/tsqr-app.js" crossorigin></script>
+</head>
+
+<body>
+  <tsqr-app></tsqr-app>
+  <noscript>
+    Please enable JavaScript to view this site.
+  </noscript>
+</body>
+
 </html>
