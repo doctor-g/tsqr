@@ -40,7 +40,7 @@ class SwUpdateToast extends PolymerElement {
           margin-right: 1em;
         }
         a {
-          color: var(--primary-color, orange);
+          color: #87cefa;
           text-decoration: none;
         }
       </style>
