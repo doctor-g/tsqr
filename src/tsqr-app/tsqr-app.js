@@ -47,6 +47,8 @@ class TsqrApp extends LitElement {
         }
       </style>
       
+      <h1>Thunderstone Quest Randomizer</h1>
+
       <paper-button raised @click="${this._randomize}">Randomize!</paper-button>
 
       <h2>Quests</h2>
