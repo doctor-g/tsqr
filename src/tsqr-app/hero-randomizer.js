@@ -1,6 +1,9 @@
-import { html, LitElement } from '@polymer/lit-element';
-import '@polymer/paper-button/paper-button.js';
+import { html, css, LitElement } from '@polymer/lit-element';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/paper-checkbox/paper-checkbox.js';
+import '@polymer/iron-icons/iron-icons.js';
 import { selectRandomlyFrom } from './randomizer.js';
+import './category-heading.js';
 
 /**
  * @customElement
@@ -30,6 +33,25 @@ class HeroRandomizer extends LitElement {
     this._classes = ["Rogue", "Cleric", "Fighter", "Wizard"];
   }
 
+  static get styles() {
+    return [
+      css`
+        :host {
+          display: block;
+        }
+      `
+    ];
+  }
+
+  randomize() {
+    if (this.shadowRoot.getElementById('fourclass').checked) {
+      this._selectFourClasses();
+    }
+    else {
+      this._selectRandomly();
+    }
+  }
+
   render() {
     return html`
       <style>
@@ -43,8 +65,8 @@ class HeroRandomizer extends LitElement {
           content: ""
         }
       </style>
-      <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClickNormal}">Random Heroes</paper-button>
-      <paper-button .disabled="${this._isDisabled(this.cards)}"raised @click="${this._onClickFourClass}">Random Heroes 4 Classes</paper-button>
+      <category-heading @refresh="${this.randomize}" .disabled="${this._isDisabled(this.cards)}">Heroes</category-heading>
+      <paper-checkbox checked id="fourclass">Ensure one of each class</paper-checkbox>
       ${this.selected.length == 0 ?
         html`` :
         html`
@@ -79,8 +101,8 @@ class HeroRandomizer extends LitElement {
     return !allFound;
   }
 
-  _onClickNormal() {
-    this.selected = selectRandomlyFrom(this.cards, 4, true);
+  _selectRandomly() {
+    this.selected = selectRandomlyFrom(this.cards, 4);
     this.requestUpdate('selected');
   }
 
@@ -95,9 +117,9 @@ class HeroRandomizer extends LitElement {
     }
   }
 
-  _onClickFourClass() {
+  _selectFourClasses() {
     do {
-      this.selected = selectRandomlyFrom(this.cards, 4, false);
+      this.selected = selectRandomlyFrom(this.cards, 4);
     } while (!this._areFourClassesSelected());
     this.requestUpdate('selected');
   }

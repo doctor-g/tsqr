@@ -1,10 +1,12 @@
-import { html, LitElement } from '@polymer/lit-element';
+import { html, css, LitElement } from '@polymer/lit-element';
 import '@polymer/paper-checkbox/paper-checkbox.js';
+import '@polymer/paper-button/paper-button.js';
 import './hero-randomizer.js';
 import './marketplace-randomizer.js';
 import './monster-randomizer.js';
 import './guardian-randomizer.js';
 import './dungeon-randomizer.js';
+import { sharedStyles } from './shared-styles.js';
 
 /**
  * @customElement
@@ -28,6 +30,12 @@ class TsqrApp extends LitElement {
     };
   }
 
+  static get styles() {
+    return [
+      sharedStyles
+    ]
+  }
+
   render() {
     return html`
       <style>
@@ -38,23 +46,41 @@ class TsqrApp extends LitElement {
           display: block;
         }
       </style>
+      
+      <paper-button raised @click="${this._randomize}">Randomize!</paper-button>
+
+      <h2>Quests</h2>
       ${this._extractQuests(this._allCards).map(quest=>html`
         <paper-checkbox checked quest="${quest}" @change="${this._onFilterChange}">${quest}</paper-checkbox>
       `)}
 
-      <hero-randomizer .cards="${this._filterCategory(this.cards, ['Heroes'])}">
+      <hero-randomizer 
+        .cards="${this._filterCategory(this.cards, ['Heroes'])}"
+        class="randomizer">
       </hero-randomizer>
-      <marketplace-randomizer .cards="${this._filterCategory(this.cards, ['Items', 'Spells', 'Weapons'])}">
+      <marketplace-randomizer
+       .cards="${this._filterCategory(this.cards, ['Items', 'Spells', 'Weapons'])}"
+       class="randomizer">
       </marketplace-randomizer>
-      <monster-randomizer .cards="${this._filterCategory(this.cards, ['Monsters'])}">
+      <monster-randomizer 
+       .cards="${this._filterCategory(this.cards, ['Monsters'])}"
+       class="randomizer">
       </monster-randomizer>
-      <guardian-randomizer .cards="${this._filterCategory(this.cards, ['Guardians'])}">
+      <guardian-randomizer 
+        .cards="${this._filterCategory(this.cards, ['Guardians'])}"
+        class="randomizer">
       </guardian-randomizer>
-      <dungeon-randomizer .cards="${this._filterCategory(this.cards, ['Dungeon Rooms'])}">
+      <dungeon-randomizer 
+        .cards="${this._filterCategory(this.cards, ['Dungeon Rooms'])}"
+        class="randomizer">
       </dungeon-randomizer>
-
-      Cards: ${this.cards.length}
     `;
+  }
+
+  _randomize() {
+    // Tell all randomizers to randomize.
+    let randomizers = this.shadowRoot.querySelectorAll(".randomizer");
+    randomizers.forEach(randomizer=>randomizer.randomize());
   }
 
   _extractQuests(cards) {

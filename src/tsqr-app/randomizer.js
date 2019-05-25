@@ -1,5 +1,5 @@
 
-export const selectRandomlyFrom = function (cards, quantity, sort=false) {
+export const selectRandomlyFrom = function (cards, quantity, sort=true) {
   if (quantity <= 0) {
     throw "Illegal parameter, quantity must be positive.";
   }

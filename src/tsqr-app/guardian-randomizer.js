@@ -1,5 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-import '@polymer/paper-button/paper-button.js';
+import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
 
 /**
@@ -34,7 +34,7 @@ class GuardianRandomizer extends LitElement {
                   font-style: italic
               }
           </style>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Guardian</paper-button>
+          <category-heading .disabled="${this._isDisabled(this.cards)}" @refresh="${this.randomize}">Guardian</category-heading>
           ${this._guardian?html`
             ${this._guardian.Name}, Level ${this._level}}
           `:html``}
@@ -45,7 +45,7 @@ class GuardianRandomizer extends LitElement {
         return cards.length == 0;
     }
 
-    _onClick() {
+    randomize() {
         this._guardian = selectRandomlyFrom(this.cards, 1)[0];
         this._level = Math.floor(Math.random()*3)+4;
     }

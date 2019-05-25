@@ -1,5 +1,5 @@
-import { html, LitElement } from '@polymer/lit-element';
-import '@polymer/paper-button/paper-button.js';
+import { html, css, LitElement } from '@polymer/lit-element';
+import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
 
 /**
@@ -22,6 +22,16 @@ class MonsterRandomizer extends LitElement {
         };
     }
 
+    static get styles() {
+        return [
+            css`
+              .level {
+                  font-style: italic;
+              }
+            `
+        ];
+    }
+
     constructor() {
         super();
         this.cards = [];
@@ -30,12 +40,7 @@ class MonsterRandomizer extends LitElement {
 
     render() {
         return html`
-          <style>
-              .level {
-                  font-style: italic
-              }
-          </style>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Monster</paper-button>
+          <category-heading @refresh="${this.randomize}" .disabled="${this._isDisabled(this.cards)}">Monsters</category-heading>
           ${(this._monsters.length > 0)?html`
           <table>
             ${["1","2","3"].map(level=>html`
@@ -52,7 +57,7 @@ class MonsterRandomizer extends LitElement {
         return cards.length < 3;
     }
 
-    _onClick() {
+    randomize() {
         this._monsters = [];
         ["1","2","3"].forEach(level => {
             var monster = selectRandomlyFrom(this.cards.filter(monster=>monster.Level==level), 1)[0];

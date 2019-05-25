@@ -1,6 +1,8 @@
-import { html, LitElement } from '@polymer/lit-element';
-import '@polymer/paper-button/paper-button.js';
+import { html, css, LitElement } from '@polymer/lit-element';
+import '@polymer/paper-radio-button/paper-radio-button.js';
+import '@polymer/paper-radio-group/paper-radio-group.js';
 import { selectRandomlyFrom } from './randomizer.js';
+import './category-heading.js';
 
 /**
  * @customElement
@@ -34,6 +36,18 @@ class MarketplaceRandomizer extends LitElement {
         };
     }
 
+    static get styles() {
+        return [
+            css`
+              paper-radio-group {
+                display: block;
+             }
+             ul {
+                 margin-top: 1px;
+             }
+        `];
+    }
+
     constructor() {
         super();
         this.cards = [];
@@ -44,12 +58,13 @@ class MarketplaceRandomizer extends LitElement {
 
     render() {
         return html`
-          <style>
-          </style>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" random>Random Marketplace</paper-button>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=4 spells=3 weapons=3>Four-Item Marketplace</paper-button>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=3 spells=4 weapons=3>Four-Spell Marketplace</paper-button>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=3 spells=3 weapons=4>Four-Weapon Marketplace</paper-button>
+          <category-heading @refresh="${this.randomize}" ?disabled="${this._isDisabled(this.cards)}">Marketplace</category-heading>
+          <paper-radio-group id="radiogroup" selected="random">
+              <paper-radio-button name="random">Random</paper-radio-button>
+              <paper-radio-button name="items">Four Items</paper-radio-button>
+              <paper-radio-button name="spells">Four Spells</paper-radio-button>
+              <paper-radio-button name="weapons">Four Weapons</paper-radio-button>
+          </paper-radio-group>
           Items:
           <ul>
             ${this._items.map(item => html`<li>${item.Name}</li>`)}
@@ -65,19 +80,12 @@ class MarketplaceRandomizer extends LitElement {
         `;
     }
 
-    _isDisabled(cards) {
-        // A "full" set (non-promo) that has at least 10 cards will
-        // have enough to fit any marketplace combo, so we save
-        // some time by doing that instead of searching for each
-        // type.
-        return cards.length < 10;
-    }
-
-    _onClick(e) {
+    randomize() {
+        let selected = this.shadowRoot.getElementById("radiogroup").selected;
         var items = 3;
         var spells = 3;
         var weapons = 3;
-        if (e.target.hasAttribute("random")) {
+        if (selected == "random") {
             switch (Math.floor(Math.random()*3)) {
                 case 0: items = 4; break;
                 case 1: spells = 4; break;
@@ -86,9 +94,12 @@ class MarketplaceRandomizer extends LitElement {
             }
         }
         else {
-            items = Number(e.target.getAttribute("items"));
-            spells = Number(e.target.getAttribute("spells"));
-            weapons = Number(e.target.getAttribute("weapons"));
+            switch (selected) {
+                case "items": items = 4; break;
+                case "spells": spells = 4; break;
+                case "weapons":  weapons = 4; break;
+                default: throw "Unreachable case";
+            }
         }
         this._items = selectRandomlyFrom(this.cards, items, true);
         this._spells = selectRandomlyFrom(this.cards, spells, true);
@@ -98,6 +109,13 @@ class MarketplaceRandomizer extends LitElement {
         this.requestUpdate('_weapons');
     }
 
+    _isDisabled(cards) {
+        // A "full" set (non-promo) that has at least 10 cards will
+        // have enough to fit any marketplace combo, so we save
+        // some time by doing that instead of searching for each
+        // type.
+        return cards.length < 10;
+    }
 }
 
 window.customElements.define('marketplace-randomizer', MarketplaceRandomizer);

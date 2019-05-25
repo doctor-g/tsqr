@@ -1,5 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-import '@polymer/paper-button/paper-button.js';
+import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
 
 /**
@@ -35,7 +35,7 @@ class DungeonRandomizer extends LitElement {
                   font-style: italic
               }
           </style>
-          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Dungeon</paper-button>
+          <category-heading .disabled="${this._isDisabled(this.cards)}" @refresh="${this.randomize}">Dungeon</category-heading>
           ${(this._rooms.length > 0)?html`
           <ul>
             ${this._rooms.map(room=>html`
@@ -53,7 +53,7 @@ class DungeonRandomizer extends LitElement {
         return cards.length < 6;
     }
 
-    _onClick() {
+    randomize() {
         this._rooms = [];
         ["1","2","3"].forEach(level => {
             var oneLevelRooms = selectRandomlyFrom(this.cards.filter(room=>room.Level==level), 2);
