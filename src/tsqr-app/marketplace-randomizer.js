@@ -1,4 +1,4 @@
-import { html, css, LitElement } from '@polymer/lit-element';
+import { html, css, LitElement } from 'lit-element';
 import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 import { selectRandomlyFrom } from './randomizer.js';

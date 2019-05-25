@@ -1,4 +1,4 @@
-import { html, css, LitElement } from '@polymer/lit-element';
+import { html, css, LitElement } from 'lit-element';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
 import { sharedStyles } from './shared-styles.js';

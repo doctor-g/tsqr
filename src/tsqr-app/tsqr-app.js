@@ -1,4 +1,4 @@
-import { html, css, LitElement } from '@polymer/lit-element';
+import { html, css, LitElement } from 'lit-element';
 import '@polymer/paper-checkbox/paper-checkbox.js';
 import '@polymer/paper-button/paper-button.js';
 import './hero-randomizer.js';

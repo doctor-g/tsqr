@@ -1,4 +1,4 @@
-import { html, css, LitElement } from '@polymer/lit-element';
+import { html, css, LitElement } from 'lit-element';
 import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
 

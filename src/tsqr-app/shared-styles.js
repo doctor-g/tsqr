@@ -1,4 +1,4 @@
-import {css} from '@polymer/lit-element';
+import {css} from 'lit-element';
 
 export const sharedStyles = css`
   h2 {

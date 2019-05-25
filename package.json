@@ -3,14 +3,14 @@
   "description": "Randomizer for Thunderstone Quest",
   "dependencies": {
     "@polymer/iron-icons": "^3.0.1",
-    "@polymer/lit-element": "^0.7.1",
     "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-checkbox": "^3.1.0",
     "@polymer/paper-icon-button": "github:PolymerElements/paper-icon-button",
     "@polymer/paper-radio-button": "github:PolymerElements/paper-radio-button",
     "@polymer/paper-radio-group": "github:PolymerElements/paper-radio-group",
     "@polymer/paper-toast": "github:PolymerElements/paper-toast",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "lit-element": "^2.1.0"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10"
