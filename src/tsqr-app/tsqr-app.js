@@ -101,7 +101,7 @@ class TsqrApp extends LitElement {
     
     this.requestUpdate('_excludes');
 
-    this.cards = this._allCards.filter(card=>this._excludes.indexOf(card.Quest)==-1);
+    this.cards = cardDB.filter(card=>this._excludes.indexOf(card.Quest)==-1);
     this.requestUpdate('cards');
   }
 
