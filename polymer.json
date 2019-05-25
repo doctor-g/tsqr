@@ -3,7 +3,7 @@
   "shell": "src/tsqr-app/tsqr-app.js",
   "extraDependencies": [
     "manifest.json",
-    "images/**"
+    "images/**/*png"
   ],
   "builds": [
     {
