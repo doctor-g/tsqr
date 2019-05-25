@@ -1,4 +1,18 @@
 {
+  "entrypoint": "index.html",
+  "shell": "src/tsqr-app/tsqr-app.js",
+  "extraDependencies": [
+    "manifest.json",
+    "images/**"
+  ],
+  "builds": [
+    {
+      "name": "github",
+      "preset": "es5-bundled",
+      "basePath": "/tsqr"
+    }
+  ],
+  "moduleResolution": "node",
   "npm": true,
   "lint": {
     "rules": [

@@ -4,17 +4,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>tsqr</title>
+    <base href="/">
+
+    <title>Thunderstone Quest Randomizer</title>
     <meta name="description" content="Randomizer for Thunderstone Quest">
 
     <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
 
-    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script>
+        window.MyAppGlobals = { rootPath: '/tsqr/'};
+  
+         // Load and register pre-caching Service Worker
+         if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('service-worker.js', {
+              scope: MyAppGlobals.rootPath
+            });
+          });
+        }
+      </script>
 
-    <script type="module" src="/src/tsqr-app/tsqr-app.js" crossorigin></script>
+      <!-- 
+      gh-pages seems to balk at the "@webcomponents" directory, so use the unpkg CDN
+      instead, together with node-style module resolution in polymer.json.
+    -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+
+    <script type="module" src="src/tsqr-app/tsqr-app.js" crossorigin></script>
   </head>
   <body>
     <tsqr-app></tsqr-app>
+    <noscript>
+        Please enable JavaScript to view this site.
+      </noscript>
   </body>
 </html>
