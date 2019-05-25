@@ -279,6 +279,89 @@ export const cardDB =
     "Category": "Heroes"
   },
   {
+    "Name": "Graeme Crawford",
+    "Quest": "What Lies Beneath",
+    "Classes": [
+        "Cleric",
+        "Fighter"
+    ],
+    "Category": "Heroes"
+  },
+  {
+    "Name": "Khomros",
+    "Quest": "What Lies Beneath",
+    "Classes": [
+        "Fighter"
+    ],
+    "Category": "Heroes"
+  },
+  {
+      "Name": "Ophialyn the Tracker",
+      "Quest": "What Lies Beneath",
+      "Classes": [
+          "Fighter"
+      ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Runiva Highstone",
+      "Quest": "What Lies Beneath",
+      "Classes": [
+          "Wizard"
+      ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Uvina the Delver",
+      "Quest": "What Lies Beneath",
+      "Classes": [
+          "Rogue"
+      ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Wiltran Proudmore",
+      "Quest": "What Lies Beneath",
+      "Classes": [ "Cleric" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Breezy",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Wizard" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Drulfal the Primordial",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Cleric" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Lefira",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Fighter" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Lilande",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Rogue" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Rugduhr Blackmane",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Rogue" ],
+      "Category": "Heroes"
+  },
+  {
+      "Name": "Samly Thrackson",
+      "Quest": "Frozen in Time",
+      "Classes": [ "Cleric", "Fighter" ],
+      "Category": "Heroes"
+  },
+  {
     "Name": "Necklace of Dawn",
     "Quest": "Promos",
     "Category": "Items"
@@ -381,6 +464,46 @@ export const cardDB =
   {
     "Name": "Ring of Spell Storing",
     "Quest": "Ripples in Time",
+    "Category": "Items"
+  },
+  {
+    "Name": "Bracers of Cleansing",
+    "Quest": "What Lies Beneath",
+    "Category": "Items"
+  },
+  {
+    "Name": "Neverending Rope Spool",
+    "Quest": "What Lies Beneath",
+    "Category": "Items"
+  },
+  {
+    "Name": "Studded Leather Shirt",
+    "Quest": "What Lies Beneath",
+    "Category": "Items"
+  },
+  {
+    "Name": "Wand of Illumination",
+    "Quest": "What Lies Beneath",
+    "Category": "Items"
+  },
+  {
+    "Name": "Eternal Flame",
+    "Quest": "Frozen in Time",
+    "Category": "Items"
+  },
+  {
+    "Name": "Ice Climbing Gear",
+    "Quest": "Frozen in Time",
+    "Category": "Items"
+  },
+  {
+    "Name": "Snow Trekking Tools",
+    "Quest": "Frozen in Time",
+    "Category": "Items"
+  },
+  {
+    "Name": "Tent",
+    "Quest": "Frozen in Time",
     "Category": "Items"
   },
   {
@@ -491,6 +614,46 @@ export const cardDB =
   {
     "Name": "Summon Storm",
     "Quest": "Ripples in Time",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Acid Burst",
+    "Quest": "What Lies Beneath",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Ascendance",
+    "Quest": "What Lies Beneath",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Cure Disease",
+    "Quest": "What Lies Beneath",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Haste",
+    "Quest": "What Lies Beneath",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Blizzard",
+    "Quest": "Frozen in Time",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Cone of Cold",
+    "Quest": "Frozen in Time",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Create Fire",
+    "Quest": "Frozen in Time",
+    "Category": "Spells"
+  },
+  {
+    "Name": "Inner Fire",
+    "Quest": "Frozen in Time",
     "Category": "Spells"
   },
   {
@@ -609,32 +772,44 @@ export const cardDB =
     "Category": "Weapons"
   },
   {
-    "Name": "Miricelle",
-    "Quest": "Bandits of Black Rock"
+    "Name": "Bastard Sword",
+    "Quest": "What Lies Beneath",
+    "Category": "Weapons"
   },
   {
-    "Name": "Stormland Mirror",
-    "Quest": "A Mirror in the Dark"
+    "Name": "Battlepick",
+    "Quest": "What Lies Beneath",
+    "Category": "Weapons"
   },
   {
-    "Name": "Sun of the Forest",
-    "Quest": "Total Eclipse of the Sun"
+    "Name": "Cleaner's Net",
+    "Quest": "What Lies Beneath",
+    "Category": "Weapons"
   },
   {
-    "Name": "Elemental Elixir",
-    "Quest": "Risen from the Mire"
+    "Name": "The Five Points",
+    "Quest": "What Lies Beneath",
+    "Category": "Weapons"
   },
   {
-    "Name": "Elmoran",
-    "Quest": "At the Foundations of the World"
+    "Name": "Fire Rod",
+    "Quest": "Frozen in Time",
+    "Category": "Weapons"
   },
   {
-    "Name": "Axe of the Giants",
-    "Quest": "Ripples in Time"
+    "Name": "Flaming Hammer",
+    "Quest": "Frozen in Time",
+    "Category": "Weapons"
   },
   {
-    "Name": "Lightbringer",
-    "Quest": "Ripples in Time"
+    "Name": "Frost Bow",
+    "Quest": "Frozen in Time",
+    "Category": "Weapons"
+  },
+  {
+    "Name": "Mechanical Harpoon",
+    "Quest": "Frozen in Time",
+    "Category": "Weapons"
   },
   {
     "Name": "Black Rock Bandits",
@@ -823,6 +998,78 @@ export const cardDB =
     "Category": "Monsters"
   },
   {
+    "Name": "Drain Dwellers",
+    "Quest": "What Lies Beneath",
+    "Level": 1,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Plague Rats",
+    "Quest": "What Lies Beneath",
+    "Level": 1,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Ghoulish Scavengers",
+    "Quest": "What Lies Beneath",
+    "Level": 2,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Sewer Trogs",
+    "Quest": "What Lies Beneath",
+    "Level": 2,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Shapeless Spawns",
+    "Quest": "What Lies Beneath",
+    "Level": 3,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Waste Wyrms",
+    "Quest": "What Lies Beneath",
+    "Level": 3,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Arctic Animals",
+    "Quest": "Frozen in Time",
+    "Level": 1,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Abyssal Servants",
+    "Quest": "Frozen in Time",
+    "Level": 1,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Bloodfrost Clan",
+    "Quest": "Frozen in Time",
+    "Level": 2,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Tundra Wolf Pack",
+    "Quest": "Frozen in Time",
+    "Level": 2,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Frozen Natives",
+    "Quest": "Frozen in Time",
+    "Level": 3,
+    "Category": "Monsters"
+  },
+  {
+    "Name": "Ice Behemoths",
+    "Quest": "Frozen in Time",
+    "Level": 3,
+    "Category": "Monsters"
+  },
+  {
     "Name": "Smorga the Queen",
     "Quest": "A Mirror in the Dark",
     "Category": "Guardians"
@@ -845,6 +1092,17 @@ export const cardDB =
   {
     "Name": "Death Sentinel",
     "Quest": "Ripples in Time",
+    "Category": "Guardians"
+  },
+  {
+    "Name": "Hive Mind",
+    "Quest": "What Lies Beneath",
+    "Category": "Guardians"
+  },
+
+  {
+    "Name": "Orgrum Coldthunder",
+    "Quest": "Frozen in Time",
     "Category": "Guardians"
   },
   {
@@ -1006,6 +1264,78 @@ export const cardDB =
   {
     "Name": "Fire Chasm",
     "Quest": "Ripples in Time",
+    "Level": 3,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Junction",
+    "Quest": "What Lies Beneath",
+    "Level": 1,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Rat Nest",
+    "Quest": "What Lies Beneath",
+    "Level": 1,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Ghoul Nest",
+    "Quest": "What Lies Beneath",
+    "Level": 2,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Trog Village",
+    "Quest": "What Lies Beneath",
+    "Level": 2,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Arches",
+    "Quest": "What Lies Beneath",
+    "Level": 3,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Catacombs",
+    "Quest": "What Lies Beneath",
+    "Level": 3,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Icy Glade",
+    "Quest": "Frozen in Time",
+    "Level": 1,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Volcanic Hot Springs",
+    "Quest": "Frozen in Time",
+    "Level": 1,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Orc Tribute Site",
+    "Quest": "Frozen in Time",
+    "Level": 2,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Tundra Chasms",
+    "Quest": "Frozen in Time",
+    "Level": 2,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Adlet Hunting Ground",
+    "Quest": "Frozen in Time",
+    "Level": 3,
+    "Category": "Dungeon Rooms"
+  },
+  {
+    "Name": "Glacial Tomb",
+    "Quest": "Frozen in Time",
     "Level": 3,
     "Category": "Dungeon Rooms"
   }
