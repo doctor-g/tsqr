@@ -15,6 +15,9 @@ class GuardianRandomizer extends LitElement {
             },
             _guardian: { 
                 type: Object,
+            },
+            _level: {
+                type: Number
             }
         };
     }
@@ -31,15 +34,20 @@ class GuardianRandomizer extends LitElement {
                   font-style: italic
               }
           </style>
-          <paper-button raised @click="${this._onClick}">Random Guardian</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Guardian</paper-button>
           ${this._guardian?html`
-            ${this._guardian.Name}, Level ${Math.floor(Math.random()*3)+4}
+            ${this._guardian.Name}, Level ${this._level}}
           `:html``}
         `;
     }
 
+    _isDisabled(cards) {
+        return cards.length == 0;
+    }
+
     _onClick() {
         this._guardian = selectRandomlyFrom(this.cards, 1)[0];
+        this._level = Math.floor(Math.random()*3)+4;
     }
 
 }

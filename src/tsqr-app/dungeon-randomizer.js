@@ -35,7 +35,7 @@ class DungeonRandomizer extends LitElement {
                   font-style: italic
               }
           </style>
-          <paper-button raised @click="${this._onClick}">Random Dungeon</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Dungeon</paper-button>
           ${(this._rooms.length > 0)?html`
           <ul>
             ${this._rooms.map(room=>html`
@@ -44,6 +44,13 @@ class DungeonRandomizer extends LitElement {
           </ul>
           `:html``}
         `;
+    }
+
+    _isDisabled(cards) {
+        // This is a bit of a kludge. We really need two level 1, 2, and 3
+        // dungeon rooms for this to work, but there are no sets where
+        // there's an uneven distribution of dungeon rooms, so this works.
+        return cards.length < 6;
     }
 
     _onClick() {

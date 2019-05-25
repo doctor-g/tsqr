@@ -1,4 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
+import '@polymer/paper-checkbox/paper-checkbox.js';
 import './hero-randomizer.js';
 import './marketplace-randomizer.js';
 import './monster-randomizer.js';
@@ -14,7 +15,15 @@ class TsqrApp extends LitElement {
   static get properties() {
     return {
       cards: {
+        type: Array,
+        hasChanged(newVal,oldVal) { return true; }
+      },
+      _allCards: {
         type: Array
+      },
+      _excludes: {
+        type: Array,
+        hasChanged(newVal,oldVal) { return true; }
       }
     };
   }
@@ -25,27 +34,59 @@ class TsqrApp extends LitElement {
         :host {
           display: block;
         }
+        paper-checkbox {
+          display: block;
+        }
       </style>
-      <hero-randomizer .cards="${this._filterCategory(this.cards, 'Heroes')}">
+      ${this._extractQuests(this._allCards).map(quest=>html`
+        <paper-checkbox checked quest="${quest}" @change="${this._onFilterChange}">${quest}</paper-checkbox>
+      `)}
+
+      <hero-randomizer .cards="${this._filterCategory(this.cards, ['Heroes'])}">
       </hero-randomizer>
-      <marketplace-randomizer .cards="${this._filterCategory(this.cards, 'Items')}">
+      <marketplace-randomizer .cards="${this._filterCategory(this.cards, ['Items', 'Spells', 'Weapons'])}">
       </marketplace-randomizer>
-      <monster-randomizer .cards="${this._filterCategory(this.cards, 'Monsters')}">
+      <monster-randomizer .cards="${this._filterCategory(this.cards, ['Monsters'])}">
       </monster-randomizer>
-      <guardian-randomizer .cards="${this._filterCategory(this.cards, 'Guardians')}">
+      <guardian-randomizer .cards="${this._filterCategory(this.cards, ['Guardians'])}">
       </guardian-randomizer>
-      <dungeon-randomizer .cards="${this._filterCategory(this.cards, 'Dungeon Rooms')}">
+      <dungeon-randomizer .cards="${this._filterCategory(this.cards, ['Dungeon Rooms'])}">
       </dungeon-randomizer>
+
+      Cards: ${this.cards.length}
     `;
   }
 
-  _filterCategory(cards, category) {
-    return cards.filter(card => card.Category == category);
+  _extractQuests(cards) {
+    var questSet = new Set();
+    cards.forEach(card=>questSet.add(card.Quest));
+    return Array.from(questSet);
+  }
+
+  _onFilterChange(e) {
+    var quest = e.target.getAttribute('quest');
+    if (e.target.checked) {
+      var index = this._excludes.indexOf(quest);
+      this._excludes.splice(index, 1);
+    } 
+    else {
+      this._excludes.push(quest);
+    }
+    
+    this.requestUpdate('_excludes');
+
+    this.cards = this._allCards.filter(card=>this._excludes.indexOf(card.Quest)==-1);
+    this.requestUpdate('cards');
+  }
+
+  _filterCategory(cards, categories) {
+    return cards.filter(card => categories.indexOf(card.Category)!=-1);
   }
 
   constructor() {
     super();
-    this.cards =
+    this._excludes = [];
+    var db =
       [
         {
           "Name": "Outlands",
@@ -1057,6 +1098,8 @@ class TsqrApp extends LitElement {
           "Category": "Dungeon Rooms"
         }
       ];
+      this._allCards = db;
+      this.cards = db;
   }
 }
 

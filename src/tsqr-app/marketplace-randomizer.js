@@ -46,10 +46,10 @@ class MarketplaceRandomizer extends LitElement {
         return html`
           <style>
           </style>
-          <paper-button raised @click="${this._onClick}" random>Random Marketplace</paper-button>
-          <paper-button raised @click="${this._onClick}" items=4 spells=3 weapons=3>Four-Item Marketplace</paper-button>
-          <paper-button raised @click="${this._onClick}" items=3 spells=4 weapons=3>Four-Spell Marketplace</paper-button>
-          <paper-button raised @click="${this._onClick}" items=3 spells=3 weapons=4>Four-Weapon Marketplace</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" random>Random Marketplace</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=4 spells=3 weapons=3>Four-Item Marketplace</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=3 spells=4 weapons=3>Four-Spell Marketplace</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}" items=3 spells=3 weapons=4>Four-Weapon Marketplace</paper-button>
           Items:
           <ul>
             ${this._items.map(item => html`<li>${item.Name}</li>`)}
@@ -63,6 +63,14 @@ class MarketplaceRandomizer extends LitElement {
             ${this._weapons.map(item => html`<li>${item.Name}</li>`)}
           </ul>
         `;
+    }
+
+    _isDisabled(cards) {
+        // A "full" set (non-promo) that has at least 10 cards will
+        // have enough to fit any marketplace combo, so we save
+        // some time by doing that instead of searching for each
+        // type.
+        return cards.length < 10;
     }
 
     _onClick(e) {

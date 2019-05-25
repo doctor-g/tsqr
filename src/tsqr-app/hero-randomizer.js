@@ -39,8 +39,8 @@ class HeroRandomizer extends LitElement {
           content: ""
         }
       </style>
-      <paper-button raised @click="${this._onClickNormal}">Random Heroes</paper-button>
-      <paper-button raised @click="${this._onClickFourClass}">Random Heroes 4 Classes</paper-button>
+      <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClickNormal}">Random Heroes</paper-button>
+      <paper-button .disabled="${this._isDisabled(this.cards)}"raised @click="${this._onClickFourClass}">Random Heroes 4 Classes</paper-button>
       ${this.selected.length == 0 ?
         html`` :
         html`
@@ -58,6 +58,12 @@ class HeroRandomizer extends LitElement {
       `)}`
       }
     `;
+  }
+
+  _isDisabled(cards) {
+    // Every set that has at least four heroes is able to come up
+    // with a set of four in each class.
+    return cards.length < 4;
   }
 
   _onClickNormal() {

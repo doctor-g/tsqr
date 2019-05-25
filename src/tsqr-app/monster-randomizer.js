@@ -35,7 +35,7 @@ class MonsterRandomizer extends LitElement {
                   font-style: italic
               }
           </style>
-          <paper-button raised @click="${this._onClick}">Random Monster</paper-button>
+          <paper-button .disabled="${this._isDisabled(this.cards)}" raised @click="${this._onClick}">Random Monster</paper-button>
           ${(this._monsters.length > 0)?html`
           <table>
             ${["1","2","3"].map(level=>html`
@@ -44,6 +44,12 @@ class MonsterRandomizer extends LitElement {
           </table>
           `:html``}
         `;
+    }
+
+    _isDisabled(cards) {
+        // Every quest that has at least three cards has enough to 
+        // do randomization, so we don't check levels to save time.
+        return cards.length < 3;
     }
 
     _onClick() {
