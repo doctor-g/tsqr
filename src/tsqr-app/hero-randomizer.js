@@ -16,6 +16,9 @@ class HeroRandomizer extends LitElement {
       selected: {
         type: Array,
         hasChanged: (value, oldValue) => true // Any change triggers update
+      },
+      _classes: {
+        type: Array
       }
     };
   }
@@ -24,6 +27,7 @@ class HeroRandomizer extends LitElement {
     super();
     this.cards = [];
     this.selected = [];
+    this._classes = ["Rogue", "Cleric", "Fighter", "Wizard"];
   }
 
   render() {
@@ -61,9 +65,18 @@ class HeroRandomizer extends LitElement {
   }
 
   _isDisabled(cards) {
-    // Every set that has at least four heroes is able to come up
-    // with a set of four in each class.
-    return cards.length < 4;
+    // Not every set of four heroes is a match (e.g. promo + black rock)
+    // but it seems every case with one of each class is, so that's our proxy.
+    var allFound = true;
+    this._classes.forEach(clazz=>{
+      for (var i=0; i<this.cards.length; i++) {
+        if (this.cards[i].Classes.indexOf(clazz)!=-1) {
+          return;
+        }
+      }
+      allFound = false;
+    });
+    return !allFound;
   }
 
   _onClickNormal() {
@@ -90,7 +103,7 @@ class HeroRandomizer extends LitElement {
   }
 
   _areFourClassesSelected() {
-    var required = ["Rogue", "Cleric", "Fighter", "Wizard"];
+    var required = this._classes;
     var permutations = [];
     this._permute(this.selected, value=>permutations.push(value));
     for (var i=0; i<permutations.length; i++) {
