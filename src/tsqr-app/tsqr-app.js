@@ -9,6 +9,7 @@ import './dungeon-randomizer.js';
 import { sharedStyles } from './shared-styles.js';
 import { cardDB } from './card-db.js';
 import './sw-update-toast.js';
+import '@polymer/paper-toast/paper-toast.js';
 
 /**
  * @customElement
@@ -25,7 +26,9 @@ class TsqrApp extends LitElement {
       _excludes: {
         type: Array,
         hasChanged(newVal,oldVal) { return true; }
-      }
+      },
+      // Response from the beforeinstallprompt event
+      _deferredPrompt: { type: Object }
     };
   }
 
@@ -33,6 +36,12 @@ class TsqrApp extends LitElement {
     return [
       sharedStyles
     ]
+  }
+
+  constructor() {
+    super();
+    this._excludes = [];
+    this.cards = cardDB;
   }
 
   render() {
@@ -77,6 +86,11 @@ class TsqrApp extends LitElement {
       </dungeon-randomizer>
 
       <sw-update-toast></sw-update-toast>
+      <paper-toast id="a2hs" duration="10000">
+        Add to home screen? 
+        <paper-button @click="${this._addToHomeScreen}">Yes</paper-button>
+        <paper-button @click="${this._dismissA2HS}">No</paper-button>
+      </paper-toast>
     `;
   }
 
@@ -112,10 +126,30 @@ class TsqrApp extends LitElement {
     return cards.filter(card => categories.indexOf(card.Category)!=-1);
   }
 
-  constructor() {
-    super();
-    this._excludes = [];
-    this.cards = cardDB;
+  firstUpdated(changedProperties) {
+    super.firstUpdated(changedProperties);
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      this._deferredPrompt = e;
+      // Prompt the user to add it to their home screen.
+      let a2hs = this.shadowRoot.getElementById("a2hs");
+      a2hs.open();
+    });
+  }
+
+  _addToHomeScreen() {
+    if (this._deferredPrompt) {
+      this._deferredPrompt.prompt();
+      this._deferredPrompt = null;
+    }
+  }
+
+  _dismissA2HS() {
+    let a2hs = this.shadowRoot.getElementById("a2hs");
+    a2hs.close();
   }
 }
 
