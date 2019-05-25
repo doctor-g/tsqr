@@ -34,7 +34,12 @@ class CategoryHeading extends LitElement {
     return html`
       <h2>
         <slot></slot> 
-        <paper-icon-button icon="refresh" ?disabled="${this.disabled}" raised @click="${this._refresh}"></paper-icon-button>
+        <paper-icon-button 
+          icon="refresh" 
+          title="Refresh"
+          ?disabled="${this.disabled}" 
+          raised @click="${this._refresh}">
+        </paper-icon-button>
       </h2>
     `;
   }
