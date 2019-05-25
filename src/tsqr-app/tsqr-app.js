@@ -53,6 +53,10 @@ class TsqrApp extends LitElement {
         paper-checkbox {
           display: block;
         }
+        .about {
+          margin-top: 16px;
+          font-size: 85%;
+        }
       </style>
       
       <h1>Thunderstone Quest Randomizer</h1>
@@ -91,6 +95,10 @@ class TsqrApp extends LitElement {
         <paper-button @click="${this._addToHomeScreen}">Yes</paper-button>
         <paper-button @click="${this._dismissA2HS}">No</paper-button>
       </paper-toast>
+
+      <div class="about">
+      <a href="https://github.com/doctor-g/tsqr">About this App</a>
+      </div>
     `;
   }
 
