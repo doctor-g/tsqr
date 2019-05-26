@@ -1,6 +1,7 @@
 export const cardDB = [
   {
     "Quest": "A Mirror in the Dark",
+    "Code": "Q1",
     "Heroes": [
       {
         "Name": "Gorlandor",
@@ -143,6 +144,7 @@ export const cardDB = [
   },
   {
     "Quest": "At the Foundations of the World",
+    "Code": "Q4",
     "Heroes": [
       {
         "Name": "Darkrend",
@@ -284,6 +286,7 @@ export const cardDB = [
   },
   {
     "Quest": "Bandits of Black Rock",
+    "Code": "-",
     "Heroes": [
       {
         "Name": "Edlin",
@@ -318,6 +321,7 @@ export const cardDB = [
   },
   {
     "Quest": "Frozen in Time",
+    "Code": "Q7",
     "Heroes": [
       {
         "Name": "Breezy",
@@ -459,6 +463,7 @@ export const cardDB = [
   },
   {
     "Quest": "Promos",
+    "Code": "-",
     "Heroes": [
       {
         "Name": "Outlands",
@@ -500,6 +505,7 @@ export const cardDB = [
   },
   {
     "Quest": "Ripples in Time",
+    "Code": "Q5",
     "Heroes": [
       {
         "Name": "Aird",
@@ -629,6 +635,7 @@ export const cardDB = [
   },
   {
     "Quest": "Risen from the Mire",
+    "Code": "Q3",
     "Heroes": [
       {
         "Name": "Baharan",
@@ -770,6 +777,7 @@ export const cardDB = [
   },
   {
     "Quest": "Total Eclipse of the Sun",
+    "Code": "Q2",
     "Heroes": [
       {
         "Name": "Avania",
@@ -911,6 +919,7 @@ export const cardDB = [
   },
   {
     "Quest": "What Lies Beneath",
+    "Code": "Q6",
     "Heroes": [
       {
         "Name": "Graeme Crawford",

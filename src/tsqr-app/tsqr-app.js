@@ -64,8 +64,8 @@ class TsqrApp extends LitElement {
       <paper-button raised @click="${this._randomize}">Randomize!</paper-button>
 
       <h2>Quests</h2>
-      ${this._extractQuests(cardDB).map(quest=>html`
-        <paper-checkbox checked quest="${quest}" @change="${this._onFilterChange}">${quest}</paper-checkbox>
+      ${cardDB.sort((a,b)=>a.Code.localeCompare(b.Code)).map(entry=>html`
+        <paper-checkbox checked quest="${entry.Quest}" @change="${this._onFilterChange}">${entry.Code}: ${entry.Quest}</paper-checkbox>
       `)}
 
       <hero-randomizer 
