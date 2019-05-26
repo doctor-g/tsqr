@@ -78,7 +78,6 @@ class TsqrApp extends LitElement {
       ${this._extractSets(cardDB).map(set=>html`
         <paper-checkbox
           class="setfilter"
-          checked
           .set="${set}"
           @change="${this._onSetFilterChange}">
             ${set}
@@ -89,12 +88,11 @@ class TsqrApp extends LitElement {
       ${cardDB.sort((a,b)=>a.Code.localeCompare(b.Code)).map(entry=>html`
         <paper-checkbox 
           class="questfilter"
-          checked 
           .quest="${entry.Quest}" 
           .sets="${entry.Sets}" 
           @change="${this._onFilterChange}">
             ${entry.Code}: ${entry.Quest}
-          </paper-checkbox>
+        </paper-checkbox>
       `)}
       </div>
       </div>
@@ -162,15 +160,23 @@ class TsqrApp extends LitElement {
   _updateFilters() {
     var questFilters = this.shadowRoot.querySelectorAll('.questfilter');
     this._excludes = [];
-    questFilters.forEach(questFilter=>{
+    questFilters.forEach(questFilter => {
       if (!questFilter.checked) {
         this._excludes.push(questFilter.quest);
       }
     });
     this.requestUpdate('_excludes');
 
-    this.cards = cardDB.filter(quest=>this._excludes.indexOf(quest.Quest)==-1);
+    this.cards = cardDB.filter(quest => this._excludes.indexOf(quest.Quest) == -1);
     this.requestUpdate('cards');
+
+    // Save to localstorage
+    this.shadowRoot.querySelectorAll(".setfilter").forEach(item => {
+      localStorage.setItem(item.set, item.checked);
+    });
+    this.shadowRoot.querySelectorAll(".questfilter").forEach(item => {
+      localStorage.setItem(item.quest, item.checked);
+    });
   }
 
   _onFilterChange(e) {
@@ -186,6 +192,18 @@ class TsqrApp extends LitElement {
   firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);
 
+    // Each filter should be updated based on its state from local storage,
+    // but if there's nothing in local storage, then default to checked.
+    this.shadowRoot.querySelectorAll('.setfilter').forEach(element=>{
+      let storedValue = localStorage.getItem(element.set);
+      element.checked = storedValue === null || storedValue === "true";
+    });
+    this.shadowRoot.querySelectorAll('.questfilter').forEach(element=>{
+      let storedValue = localStorage.getItem(element.quest);
+      element.checked = storedValue === null || storedValue === "true";
+    });
+
+    // Set up add-to-homescreen
     window.addEventListener('beforeinstallprompt', (e) => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
