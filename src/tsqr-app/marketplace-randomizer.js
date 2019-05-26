@@ -12,9 +12,16 @@ class MarketplaceRandomizer extends LitElement {
 
     static get properties() {
         return {
-            cards: {
+            itemCards: {
                 type: Array
             },
+            spellCards: {
+                type: Array
+            },
+            weaponCards: {
+                type: Array
+            },
+
             _items: { 
                 type: Array,
                 hasChanged(newVal, oldVal) {
@@ -50,7 +57,9 @@ class MarketplaceRandomizer extends LitElement {
 
     constructor() {
         super();
-        this.cards = [];
+        this.itemCards = [];
+        this.spellCards = [];
+        this.weaponCards = [];
         this._items = [];
         this._weapons = [];
         this._spells = [];
@@ -101,9 +110,9 @@ class MarketplaceRandomizer extends LitElement {
                 default: throw "Unreachable case";
             }
         }
-        this._items = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Items"), items, true);
-        this._spells = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Spells"), spells, true);
-        this._weapons = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Weapons"), weapons, true);
+        this._items = selectRandomlyFrom(this.itemCards, items, true);
+        this._spells = selectRandomlyFrom(this.spellCards, spells, true);
+        this._weapons = selectRandomlyFrom(this.weaponCards, weapons, true);
         this.requestUpdate('_items');
         this.requestUpdate('_spells');
         this.requestUpdate('_weapons');
@@ -114,7 +123,9 @@ class MarketplaceRandomizer extends LitElement {
         // have enough to fit any marketplace combo, so we save
         // some time by doing that instead of searching for each
         // type.
-        return cards.length < 10;
+        return this.itemCards.length 
+          + this.spellCards.length 
+          + this.weaponCards.length < 10;
     }
 }
 

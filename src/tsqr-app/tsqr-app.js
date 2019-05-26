@@ -73,7 +73,9 @@ class TsqrApp extends LitElement {
         class="randomizer">
       </hero-randomizer>
       <marketplace-randomizer
-       .cards="${this._filterCategory(this.cards, ['Items', 'Spells', 'Weapons'])}"
+       .itemCards="${this._filterCategory(this.cards, ['Items'])}"
+       .spellCards="${this._filterCategory(this.cards, ['Spells'])}"
+       .weaponCards="${this._filterCategory(this.cards, ['Weapons'])}"
        class="randomizer">
       </marketplace-randomizer>
       <monster-randomizer 
@@ -110,7 +112,7 @@ class TsqrApp extends LitElement {
 
   _extractQuests(cards) {
     var questSet = new Set();
-    cards.forEach(card=>questSet.add(card.Quest));
+    cards.forEach(quest=>questSet.add(quest.Quest));
     return Array.from(questSet);
   }
 
@@ -126,12 +128,16 @@ class TsqrApp extends LitElement {
     
     this.requestUpdate('_excludes');
 
-    this.cards = cardDB.filter(card=>this._excludes.indexOf(card.Quest)==-1);
+    this.cards = cardDB.filter(quest=>this._excludes.indexOf(quest.Quest)==-1);
     this.requestUpdate('cards');
   }
 
   _filterCategory(cards, categories) {
-    return cards.filter(card => categories.indexOf(card.Category)!=-1);
+    var result = [];
+    categories.forEach(category=>{
+      cards.forEach(quest=>result = result.concat(quest[category]));
+    });
+    return result;
   }
 
   firstUpdated(changedProperties) {
