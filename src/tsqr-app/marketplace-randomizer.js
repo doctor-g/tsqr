@@ -61,9 +61,9 @@ class MarketplaceRandomizer extends LitElement {
           <category-heading @refresh="${this.randomize}" ?disabled="${this._isDisabled(this.cards)}">Marketplace</category-heading>
           <paper-radio-group id="radiogroup" selected="random">
               <paper-radio-button name="random">Random</paper-radio-button>
-              <paper-radio-button name="items">Three Items</paper-radio-button>
-              <paper-radio-button name="spells">Three Spells</paper-radio-button>
-              <paper-radio-button name="weapons">Three Weapons</paper-radio-button>
+              <paper-radio-button name="items">Two Items</paper-radio-button>
+              <paper-radio-button name="spells">Two Spells</paper-radio-button>
+              <paper-radio-button name="weapons">Two Weapons</paper-radio-button>
           </paper-radio-group>
           Items:
           <ul>
@@ -82,22 +82,22 @@ class MarketplaceRandomizer extends LitElement {
 
     randomize() {
         let selected = this.shadowRoot.getElementById("radiogroup").selected;
-        var items = 2;
-        var spells = 2;
-        var weapons = 2;
+        var items = 3;
+        var spells = 3;
+        var weapons = 3;
         if (selected == "random") {
             switch (Math.floor(Math.random()*3)) {
-                case 0: items = 3; break;
-                case 1: spells = 3; break;
-                case 2: weapons = 3; break;
+                case 0: items = 2; break;
+                case 1: spells = 2; break;
+                case 2: weapons = 2; break;
                 default: throw "Unreachable case";
             }
         }
         else {
             switch (selected) {
-                case "items": items = 3; break;
-                case "spells": spells = 3; break;
-                case "weapons":  weapons = 3; break;
+                case "items": items = 2; break;
+                case "spells": spells = 2; break;
+                case "weapons":  weapons = 2; break;
                 default: throw "Unreachable case";
             }
         }
