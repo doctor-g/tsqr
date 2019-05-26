@@ -90,7 +90,7 @@ class TsqrApp extends LitElement {
           class="questfilter"
           .quest="${entry.Quest}" 
           .sets="${entry.Sets}" 
-          @change="${this._onFilterChange}">
+          @change="${this._onQuestFilterChange}">
             ${entry.Code}: ${entry.Quest}
         </paper-checkbox>
       `)}
@@ -154,6 +154,8 @@ class TsqrApp extends LitElement {
         questFilter.checked = isSelected;
       }
     });
+
+    this._syncSetSelectionToQuestSelection();
     this._updateFilters();
   }
 
@@ -167,6 +169,7 @@ class TsqrApp extends LitElement {
     });
     this.requestUpdate('_excludes');
 
+    // Update the cards based on the filter selection
     this.cards = cardDB.filter(quest => this._excludes.indexOf(quest.Quest) == -1);
     this.requestUpdate('cards');
 
@@ -179,8 +182,22 @@ class TsqrApp extends LitElement {
     });
   }
 
-  _onFilterChange(e) {
+  _onQuestFilterChange(e) {
+    this._syncSetSelectionToQuestSelection();
     this._updateFilters();
+  }
+
+  _syncSetSelectionToQuestSelection() {
+    // Make sure to deselect sets whose contents is no longer checked.
+    this.shadowRoot.querySelectorAll('.setfilter').forEach(element=>{
+      var allSelected = true;
+      this.shadowRoot.querySelectorAll(".questfilter").forEach(questelement => {
+        if (!questelement.checked && questelement.sets.indexOf(element.set)!==-1) {
+          allSelected = false;
+        }
+      });
+      element.checked = allSelected;
+    });
   }
 
   _filterCategory(cards, category) {
@@ -202,6 +219,9 @@ class TsqrApp extends LitElement {
       let storedValue = localStorage.getItem(element.quest);
       element.checked = storedValue === null || storedValue === "true";
     });
+
+    // Make sure the excludes list matches the checkbox selection
+    this._updateFilters();
 
     // Set up add-to-homescreen
     window.addEventListener('beforeinstallprompt', (e) => {
