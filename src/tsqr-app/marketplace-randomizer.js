@@ -61,9 +61,9 @@ class MarketplaceRandomizer extends LitElement {
           <category-heading @refresh="${this.randomize}" ?disabled="${this._isDisabled(this.cards)}">Marketplace</category-heading>
           <paper-radio-group id="radiogroup" selected="random">
               <paper-radio-button name="random">Random</paper-radio-button>
-              <paper-radio-button name="items">Four Items</paper-radio-button>
-              <paper-radio-button name="spells">Four Spells</paper-radio-button>
-              <paper-radio-button name="weapons">Four Weapons</paper-radio-button>
+              <paper-radio-button name="items">Three Items</paper-radio-button>
+              <paper-radio-button name="spells">Three Spells</paper-radio-button>
+              <paper-radio-button name="weapons">Three Weapons</paper-radio-button>
           </paper-radio-group>
           Items:
           <ul>
@@ -82,28 +82,28 @@ class MarketplaceRandomizer extends LitElement {
 
     randomize() {
         let selected = this.shadowRoot.getElementById("radiogroup").selected;
-        var items = 3;
-        var spells = 3;
-        var weapons = 3;
+        var items = 2;
+        var spells = 2;
+        var weapons = 2;
         if (selected == "random") {
             switch (Math.floor(Math.random()*3)) {
-                case 0: items = 4; break;
-                case 1: spells = 4; break;
-                case 2: weapons = 4; break;
+                case 0: items = 3; break;
+                case 1: spells = 3; break;
+                case 2: weapons = 3; break;
                 default: throw "Unreachable case";
             }
         }
         else {
             switch (selected) {
-                case "items": items = 4; break;
-                case "spells": spells = 4; break;
-                case "weapons":  weapons = 4; break;
+                case "items": items = 3; break;
+                case "spells": spells = 3; break;
+                case "weapons":  weapons = 3; break;
                 default: throw "Unreachable case";
             }
         }
-        this._items = selectRandomlyFrom(this.cards, items, true);
-        this._spells = selectRandomlyFrom(this.cards, spells, true);
-        this._weapons = selectRandomlyFrom(this.cards, weapons, true);
+        this._items = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Items"), items, true);
+        this._spells = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Spells"), spells, true);
+        this._weapons = selectRandomlyFrom(this.cards.filter(card=>card.Category=="Weapons"), weapons, true);
         this.requestUpdate('_items');
         this.requestUpdate('_spells');
         this.requestUpdate('_weapons');
