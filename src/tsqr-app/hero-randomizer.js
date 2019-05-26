@@ -126,8 +126,7 @@ class HeroRandomizer extends LitElement {
 
   _areFourClassesSelected() {
     var required = this._classes;
-    var permutations = [];
-    this._permute(this.selected, value=>permutations.push(value));
+    var permutations = this._permute(this.selected);
     for (var i=0; i<permutations.length; i++) {
       var match = true;
       for (var j=0; j<required.length; j++) {
@@ -142,31 +141,23 @@ class HeroRandomizer extends LitElement {
     return false;
   }
 
-
-  // Algorithm courtesy http://dsernst.com/2014/12/14/heaps-permutation-algorithm-in-javascript/
-
-  _swap(array, pos1, pos2) {
-    var temp = array[pos1];
-    array[pos1] = array[pos2];
-    array[pos2] = temp;
-  };
-
-  _permute(array, output, n) {
-    n = n || array.length; // set n default to array.length
-    if (n === 1) {
-      output(array);
-    } else {
-      for (var i = 1; i <= n; i += 1) {
-        this._permute(array, output, n - 1);
-        if (n % 2) {
-          var j = 1;
-        } else {
-          var j = i;
+  // Algorithm courtesy https://stackoverflow.com/a/43260158/176007
+  _permute(xs) {
+    let ret = [];
+  
+    for (let i = 0; i < xs.length; i = i + 1) {
+      let rest = this._permute(xs.slice(0, i).concat(xs.slice(i + 1)));
+  
+      if(!rest.length) {
+        ret.push([xs[i]])
+      } else {
+        for(let j = 0; j < rest.length; j = j + 1) {
+          ret.push([xs[i]].concat(rest[j]))
         }
-        this._swap(array, j - 1, n - 1); // -1 to account for javascript zero-indexing
       }
     }
-  };
+    return ret;
+  }
 }
 
 window.customElements.define('hero-randomizer', HeroRandomizer);
