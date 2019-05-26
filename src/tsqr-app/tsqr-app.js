@@ -69,25 +69,25 @@ class TsqrApp extends LitElement {
       `)}
 
       <hero-randomizer 
-        .cards="${this._filterCategory(this.cards, ['Heroes'])}"
+        .cards="${this._filterCategory(this.cards, 'Heroes')}"
         class="randomizer">
       </hero-randomizer>
       <marketplace-randomizer
-       .itemCards="${this._filterCategory(this.cards, ['Items'])}"
-       .spellCards="${this._filterCategory(this.cards, ['Spells'])}"
-       .weaponCards="${this._filterCategory(this.cards, ['Weapons'])}"
+       .itemCards="${this._filterCategory(this.cards, 'Items')}"
+       .spellCards="${this._filterCategory(this.cards, 'Spells')}"
+       .weaponCards="${this._filterCategory(this.cards, 'Weapons')}"
        class="randomizer">
       </marketplace-randomizer>
       <monster-randomizer 
-       .cards="${this._filterCategory(this.cards, ['Monsters'])}"
+       .cards="${this._filterCategory(this.cards, 'Monsters')}"
        class="randomizer">
       </monster-randomizer>
       <guardian-randomizer 
-        .cards="${this._filterCategory(this.cards, ['Guardians'])}"
+        .cards="${this._filterCategory(this.cards, 'Guardians')}"
         class="randomizer">
       </guardian-randomizer>
       <dungeon-randomizer 
-        .cards="${this._filterCategory(this.cards, ['Dungeon Rooms'])}"
+        .cards="${this._filterCategory(this.cards, 'Dungeon Rooms')}"
         class="randomizer">
       </dungeon-randomizer>
 
@@ -132,11 +132,9 @@ class TsqrApp extends LitElement {
     this.requestUpdate('cards');
   }
 
-  _filterCategory(cards, categories) {
+  _filterCategory(cards, category) {
     var result = [];
-    categories.forEach(category=>{
-      cards.forEach(quest=>result = result.concat(quest[category]));
-    });
+    cards.forEach(quest=>result = result.concat(quest[category]));  
     return result;
   }
 
