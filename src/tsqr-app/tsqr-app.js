@@ -50,6 +50,15 @@ class TsqrApp extends LitElement {
         :host {
           display: block;
         }
+        #filters {
+          display: flex;
+        }
+        #setfilters {
+          flex: 0 0 40%;
+        }
+        #questfilters {
+          flex: 1;
+        }
         paper-checkbox {
           display: block;
         }
@@ -63,10 +72,32 @@ class TsqrApp extends LitElement {
 
       <paper-button raised @click="${this._randomize}">Randomize!</paper-button>
 
-      <h2>Quests</h2>
-      ${cardDB.sort((a,b)=>a.Code.localeCompare(b.Code)).map(entry=>html`
-        <paper-checkbox checked quest="${entry.Quest}" @change="${this._onFilterChange}">${entry.Code}: ${entry.Quest}</paper-checkbox>
+      <h2>Sets and Quests</h2>
+      <div id="filters">
+      <div id="setfilters">
+      ${this._extractSets(cardDB).map(set=>html`
+        <paper-checkbox
+          class="setfilter"
+          checked
+          .set="${set}"
+          @change="${this._onSetFilterChange}">
+            ${set}
+        </paper-checkbox>
       `)}
+      </div>
+      <div id="questfilters">
+      ${cardDB.sort((a,b)=>a.Code.localeCompare(b.Code)).map(entry=>html`
+        <paper-checkbox 
+          class="questfilter"
+          checked 
+          .quest="${entry.Quest}" 
+          .sets="${entry.Sets}" 
+          @change="${this._onFilterChange}">
+            ${entry.Code}: ${entry.Quest}
+          </paper-checkbox>
+      `)}
+      </div>
+      </div>
 
       <hero-randomizer 
         .cards="${this._filterCategory(this.cards, 'Heroes')}"
@@ -110,26 +141,40 @@ class TsqrApp extends LitElement {
     randomizers.forEach(randomizer=>randomizer.randomize());
   }
 
-  _extractQuests(cards) {
-    var questSet = new Set();
-    cards.forEach(quest=>questSet.add(quest.Quest));
-    return Array.from(questSet);
+  _extractSets(cards) {
+    var setOfSets = new Set();
+    cards.forEach(quest=>quest.Sets.forEach(set=>setOfSets.add(set)));
+    return Array.from(setOfSets).sort((a,b)=>a.localeCompare(b));
   }
 
-  _onFilterChange(e) {
-    var quest = e.target.getAttribute('quest');
-    if (e.target.checked) {
-      var index = this._excludes.indexOf(quest);
-      this._excludes.splice(index, 1);
-    } 
-    else {
-      this._excludes.push(quest);
-    }
-    
+  _onSetFilterChange(e) {
+    var selectedSet = e.target.set;
+    var isSelected = e.target.checked;
+    var questFilters = this.shadowRoot.querySelectorAll('.questfilter');
+    questFilters.forEach(questFilter=>{
+      if (questFilter.sets.indexOf(selectedSet)!=-1) {
+        questFilter.checked = isSelected;
+      }
+    });
+    this._updateFilters();
+  }
+
+  _updateFilters() {
+    var questFilters = this.shadowRoot.querySelectorAll('.questfilter');
+    this._excludes = [];
+    questFilters.forEach(questFilter=>{
+      if (!questFilter.checked) {
+        this._excludes.push(questFilter.quest);
+      }
+    });
     this.requestUpdate('_excludes');
 
     this.cards = cardDB.filter(quest=>this._excludes.indexOf(quest.Quest)==-1);
     this.requestUpdate('cards');
+  }
+
+  _onFilterChange(e) {
+    this._updateFilters();
   }
 
   _filterCategory(cards, category) {

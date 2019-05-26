@@ -2,6 +2,10 @@ export const cardDB = [
   {
     "Quest": "A Mirror in the Dark",
     "Code": "Q1",
+    "Sets": [
+      "Base Game",
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Gorlandor",
@@ -145,6 +149,9 @@ export const cardDB = [
   {
     "Quest": "At the Foundations of the World",
     "Code": "Q4",
+    "Sets": [
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Darkrend",
@@ -287,6 +294,9 @@ export const cardDB = [
   {
     "Quest": "Bandits of Black Rock",
     "Code": "-",
+    "Sets": [
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Edlin",
@@ -322,6 +332,9 @@ export const cardDB = [
   {
     "Quest": "Frozen in Time",
     "Code": "Q7",
+    "Sets": [
+      "To the Barricades"
+    ],
     "Heroes": [
       {
         "Name": "Breezy",
@@ -464,6 +477,9 @@ export const cardDB = [
   {
     "Quest": "Promos",
     "Code": "-",
+    "Sets": [
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Outlands",
@@ -506,6 +522,9 @@ export const cardDB = [
   {
     "Quest": "Ripples in Time",
     "Code": "Q5",
+    "Sets": [
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Aird",
@@ -636,6 +655,9 @@ export const cardDB = [
   {
     "Quest": "Risen from the Mire",
     "Code": "Q3",
+    "Sets": [
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Baharan",
@@ -778,6 +800,10 @@ export const cardDB = [
   {
     "Quest": "Total Eclipse of the Sun",
     "Code": "Q2",
+    "Sets": [
+      "Base Game",
+      "Champion"
+    ],
     "Heroes": [
       {
         "Name": "Avania",
@@ -920,6 +946,9 @@ export const cardDB = [
   {
     "Quest": "What Lies Beneath",
     "Code": "Q6",
+    "Sets": [
+      "To the Barricades",
+    ],
     "Heroes": [
       {
         "Name": "Graeme Crawford",
