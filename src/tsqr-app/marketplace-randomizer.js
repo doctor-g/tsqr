@@ -3,12 +3,13 @@ import '@polymer/paper-radio-button/paper-radio-button.js';
 import '@polymer/paper-radio-group/paper-radio-group.js';
 import { selectRandomlyFrom } from './randomizer.js';
 import './category-heading.js';
+import { AbstractRandomizer } from './abstract-randomizer.js';
 
 /**
  * @customElement
  * @polymer
  */
-class MarketplaceRandomizer extends LitElement {
+class MarketplaceRandomizer extends AbstractRandomizer {
 
     static get properties() {
         return {
@@ -49,8 +50,8 @@ class MarketplaceRandomizer extends LitElement {
               paper-radio-group {
                 display: block;
              }
-             ul {
-                 margin-top: 1px;
+             h3 {
+                 margin-bottom: 1px;
              }
         `];
     }
@@ -74,18 +75,26 @@ class MarketplaceRandomizer extends LitElement {
               <paper-radio-button name="spells">Two Spells</paper-radio-button>
               <paper-radio-button name="weapons">Two Weapons</paper-radio-button>
           </paper-radio-group>
-          Items:
-          <ul>
-            ${this._items.map(item => html`<li>${item.Name}</li>`)}
-          </ul>
-          Spells:
-          <ul>
-            ${this._spells.map(item => html`<li>${item.Name}</li>`)}
-          </ul>
-          Weapons:
-          <ul>
-            ${this._weapons.map(item => html`<li>${item.Name}</li>`)}
-          </ul>
+
+          ${this._marketplace("Items", this._items)}
+          ${this._marketplace("Spells", this._spells)}
+          ${this._marketplace("Weapons", this._weapons)}
+        `;
+    }
+
+    _marketplace(title, cards) {
+        return html`
+          <h3>${title}</h3>
+          <table>
+            ${cards.map(card => html`
+              <tr>
+                <td>${card.Name}</td>
+                ${this.showQuests?html`
+                  <td><quest-label .quest="${card.Quest}"></quest-label></td>
+                `:html``}
+              </tr>
+            `)}
+          </table>
         `;
     }
 

@@ -1,12 +1,13 @@
-import { html, LitElement } from 'lit-element';
+import { html } from 'lit-element';
 import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
+import {AbstractRandomizer} from './abstract-randomizer.js';
 
 /**
  * @customElement
  * @polymer
  */
-class DungeonRandomizer extends LitElement {
+class DungeonRandomizer extends AbstractRandomizer {
 
     static get properties() {
         return {
@@ -37,11 +38,15 @@ class DungeonRandomizer extends LitElement {
           </style>
           <category-heading .disabled="${this._isDisabled(this.cards)}" @refresh="${this.randomize}">Dungeon</category-heading>
           ${(this._rooms.length > 0)?html`
-          <ul>
+          <table>
             ${this._rooms.map(room=>html`
-                <li>${room.Name} (Level ${room.Level})</li>
+                <tr>
+                  <td>Level ${room.Level}: </td>
+                  <td>${room.Name}</td>
+                  ${this.showQuests?html`<td><quest-label .quest=${room.Quest}></quest-label></td>`:html``}
+                </tr>
             `)}
-          </ul>
+          </table>
           `:html``}
         `;
     }

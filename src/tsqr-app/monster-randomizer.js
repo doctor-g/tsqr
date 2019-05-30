@@ -1,12 +1,13 @@
-import { html, css, LitElement } from 'lit-element';
+import { html } from 'lit-element';
 import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
+import { AbstractRandomizer } from './abstract-randomizer.js';
 
 /**
  * @customElement
  * @polymer
  */
-class MonsterRandomizer extends LitElement {
+class MonsterRandomizer extends AbstractRandomizer {
 
     static get properties() {
         return {
@@ -22,16 +23,6 @@ class MonsterRandomizer extends LitElement {
         };
     }
 
-    static get styles() {
-        return [
-            css`
-              .level {
-                  font-style: italic;
-              }
-            `
-        ];
-    }
-
     constructor() {
         super();
         this.cards = [];
@@ -44,7 +35,13 @@ class MonsterRandomizer extends LitElement {
           ${(this._monsters.length > 0)?html`
           <table>
             ${["1","2","3"].map(level=>html`
-              <tr><td>${this._monsters[Number(level)-1].Name}</td><td class="level">Level ${level}</td></tr>
+              <tr>
+                <td>Level ${level}:</td>
+                <td>${this._monsters[Number(level)-1].Name}</td>
+                ${this.showQuests?html`
+                  <td><quest-label .quest="${this._monsters[Number(level)-1].Quest}"></quest-label>
+                `:html``}
+              </tr>
             `)}
           </table>
           `:html``}

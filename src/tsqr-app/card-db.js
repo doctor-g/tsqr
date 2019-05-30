@@ -1089,3 +1089,15 @@ export const cardDB = [
     ]
   }
 ];
+
+// Copy the quest information back into the cards.
+cardDB.forEach(quest=>{
+  ["Heroes","Items","Spells","Weapons", "Guardians", "Dungeon Rooms", "Monsters"].forEach(category=>{
+    quest[category].forEach(card=>{
+      card.Quest = {
+        "Name": quest.Quest,
+        "Code": quest.Code
+      }
+    });
+  });
+});

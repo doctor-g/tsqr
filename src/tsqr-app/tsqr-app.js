@@ -27,6 +27,9 @@ class TsqrApp extends LitElement {
         type: Array,
         hasChanged(newVal,oldVal) { return true; }
       },
+      _showQuests: {
+        type: Boolean,
+      },
       // Response from the beforeinstallprompt event
       _deferredPrompt: { type: Object }
     };
@@ -52,12 +55,16 @@ class TsqrApp extends LitElement {
         }
         #filters {
           display: flex;
+          flex-wrap: wrap;
         }
         #setfilters {
-          flex: 0 0 40%;
+          flex: 140px;
         }
         #questfilters {
-          flex: 1;
+          flex: 200px;
+        }
+        #options {
+          flex: 180px;
         }
         paper-checkbox {
           display: block;
@@ -72,9 +79,10 @@ class TsqrApp extends LitElement {
 
       <paper-button raised @click="${this._randomize}">Randomize!</paper-button>
 
-      <h2>Sets and Quests</h2>
+      <h2>Settings</h2>
       <div id="filters">
       <div id="setfilters">
+        <h3>Sets</h3>
       ${this._extractSets(cardDB).map(set=>html`
         <paper-checkbox
           class="setfilter"
@@ -85,6 +93,7 @@ class TsqrApp extends LitElement {
       `)}
       </div>
       <div id="questfilters">
+        <h3>Quests</h3>
       ${cardDB.sort((a,b)=>a.Code.localeCompare(b.Code)).map(entry=>html`
         <paper-checkbox 
           class="questfilter"
@@ -95,28 +104,37 @@ class TsqrApp extends LitElement {
         </paper-checkbox>
       `)}
       </div>
+      <div id="options">
+        <h3>Options</h3>
+        <paper-checkbox id="showquests" @change="${this._onShowQuestsChange}">Show Quests in results</paper-checkbox>
+      </div>
       </div>
 
       <hero-randomizer 
         .cards="${this._filterCategory(this.cards, 'Heroes')}"
+        ?showQuests="${this._showQuests}"
         class="randomizer">
       </hero-randomizer>
       <marketplace-randomizer
        .itemCards="${this._filterCategory(this.cards, 'Items')}"
        .spellCards="${this._filterCategory(this.cards, 'Spells')}"
        .weaponCards="${this._filterCategory(this.cards, 'Weapons')}"
+       ?showQuests="${this._showQuests}"
        class="randomizer">
       </marketplace-randomizer>
       <monster-randomizer 
        .cards="${this._filterCategory(this.cards, 'Monsters')}"
+       ?showQuests="${this._showQuests}"
        class="randomizer">
       </monster-randomizer>
       <guardian-randomizer 
         .cards="${this._filterCategory(this.cards, 'Guardians')}"
+        ?showQuests="${this._showQuests}"
         class="randomizer">
       </guardian-randomizer>
       <dungeon-randomizer 
         .cards="${this._filterCategory(this.cards, 'Dungeon Rooms')}"
+        ?showQuests="${this._showQuests}"
         class="randomizer">
       </dungeon-randomizer>
 
@@ -131,6 +149,11 @@ class TsqrApp extends LitElement {
       <a href="https://github.com/doctor-g/tsqr">About this App</a>
       </div>
     `;
+  }
+
+  _onShowQuestsChange(e) {
+    this._showQuests = e.target.checked;
+    localStorage.setItem('showQuests', this._showQuests);
   }
 
   _randomize() {
@@ -219,6 +242,10 @@ class TsqrApp extends LitElement {
       let storedValue = localStorage.getItem(element.quest);
       element.checked = storedValue === null || storedValue === "true";
     });
+
+    // Update the options as well
+    this._showQuests = localStorage.getItem('showQuests') === "true";
+    this.shadowRoot.querySelector('#showquests').checked = this._showQuests;
 
     // Make sure the excludes list matches the checkbox selection
     this._updateFilters();

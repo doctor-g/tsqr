@@ -1,12 +1,13 @@
-import { html, LitElement } from 'lit-element';
+import { html } from 'lit-element';
 import './category-heading.js';
 import { selectRandomlyFrom } from './randomizer.js';
+import { AbstractRandomizer } from './abstract-randomizer.js';
 
 /**
  * @customElement
  * @polymer
  */
-class GuardianRandomizer extends LitElement {
+class GuardianRandomizer extends AbstractRandomizer {
 
     static get properties() {
         return {
@@ -37,6 +38,7 @@ class GuardianRandomizer extends LitElement {
           <category-heading .disabled="${this._isDisabled(this.cards)}" @refresh="${this.randomize}">Guardian</category-heading>
           ${this._guardian?html`
             ${this._guardian.Name}, Level ${this._level}
+            ${this.showQuests?html`<quest-label .quest="${this._guardian.Quest}"></quest-label>`:html``}
           `:html``}
         `;
     }

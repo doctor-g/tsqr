@@ -4,12 +4,13 @@ import '@polymer/paper-checkbox/paper-checkbox.js';
 import '@polymer/iron-icons/iron-icons.js';
 import { selectRandomlyFrom } from './randomizer.js';
 import './category-heading.js';
+import {AbstractRandomizer} from './abstract-randomizer.js';
 
 /**
  * @customElement
  * @polymer
  */
-class HeroRandomizer extends LitElement {
+class HeroRandomizer extends AbstractRandomizer {
 
   static get properties() {
     return {
@@ -79,6 +80,7 @@ class HeroRandomizer extends LitElement {
         <td>
           ${hero.Classes.map(Class => html`<span class="heroclass">${Class}</span>`)}
         </td>
+        ${this.showQuests?html`<td><quest-label .quest="${hero.Quest}"></quest-label></td>`:html``}
         </tr>
       </table>
       `)}`
