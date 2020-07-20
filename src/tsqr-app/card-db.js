@@ -947,7 +947,7 @@ export const cardDB = [
     "Quest": "What Lies Beneath",
     "Code": "Q6",
     "Sets": [
-      "To the Barricades",
+      "To the Barricades"
     ],
     "Heroes": [
       {
@@ -1184,7 +1184,7 @@ export const cardDB = [
       {
         "Name": "Amtephetes's Forces",
         "Level": 3
-      },
+      }
     ],
     "Guardians": [
       { "Name": "Amtephetes VII, The Wicked" }
@@ -1252,19 +1252,19 @@ export const cardDB = [
       { "Name": "Crystal Light" },
       { "Name": "Plate Armor" },
       { "Name": "Thunderstone Elixer" },
-      { "Name": "Thunderstone Ore" },
+      { "Name": "Thunderstone Ore" }
     ],
     "Spells": [
       { "Name": "Animate Dead" },
       { "Name": "Construct Protector" },
       { "Name": "Mend" },
       { "Name": "Thunderstone Ritual" },
-      { "Name": "Transmutation" },
+      { "Name": "Transmutation" }
     ],
     "Weapons": [
       { "Name": "Keltarian Bow" },
       { "Name": "Thunderstone Hammer" },
-      { "Name": "Thunderstone Rod" },
+      { "Name": "Thunderstone Rod" }
     ],
     "Monsters": [
       {
@@ -1290,7 +1290,7 @@ export const cardDB = [
       {
         "Name": "Mech Menaces",
         "Level": 3
-      },
+      }
     ],
     "Guardians": [ { "Name": "Thavroh Anvilbane" } ],
     "Dungeon Rooms": [
@@ -1317,7 +1317,7 @@ export const cardDB = [
       {
         "Name": "Twilight Portal",
         "Level": 3
-      },
+      }
     ]
   }
 ];
