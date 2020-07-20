@@ -1,0 +1,21 @@
+{
+  "name": "Thunderstone Quest Randomizer",
+  "short_name": "TQR",
+  "description": "App to randomize card selections for the board game Thunderstone Quest",
+  "start_url": "/tsqr/index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#d9d4cb",
+  "theme_color": "#d9d4cb"
+}
