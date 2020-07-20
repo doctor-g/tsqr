@@ -1087,6 +1087,238 @@ export const cardDB = [
         "Level": 3
       }
     ]
+  },
+  {
+    "Quest": "Vengeful Sands",
+    "Code": "Q8",
+    "Sets": [
+      "New Horizons"
+    ],
+    "Heroes": [
+      {
+        "Name": "Cirrok",
+        "Classes": [
+          "Rogue"
+        ]
+      },
+      {
+        "Name": "Duriggim Soulbrand",
+        "Classes": [
+          "Cleric",
+          "Wizard"
+        ]
+      },
+      {
+        "Name": "Rien Mandroux",
+        "Classes": [
+          "Fighter"
+        ]
+      },
+      {
+        "Name": "Hemna Granitesunder",
+        "Classes": [
+          "Fighter"
+        ]
+      },
+      {
+        "Name": "Shakir the Sailor",
+        "Classes": [
+          "Rogue"
+        ]
+      },
+      {
+        "Name": "Shawna Hopesinger",
+        "Classes": [
+          "Rogue",
+          "Wizard"
+        ]
+      },
+      {
+        "Name": "Cirrok",
+        "Classes": [
+          "Rogue"
+        ]
+      }
+    ],
+    "Items": [
+      { "Name": "Spices" },
+      { "Name": "Bag of Gems" },
+      { "Name": "Thunderstone Potion" }
+    ],
+    "Spells": [
+      { "Name": "Mummify" },
+      { "Name": "Navigate the Labyrinth" },
+      { "Name": "Open Sesame" },
+      { "Name": "Summon Help" }
+    ],
+    "Weapons": [
+      { "Name": "Avian Bow"},
+      { "Name": "Khopesh"},
+      { "Name": "Scimitar"}
+    ],
+    "Allies": [
+      { "Name": "Camel"},
+      { "Name": "Desert Wolf"}
+    ],
+    "Monsters": [
+      {
+        "Name": "Beetle Bevy",
+        "Level": 1
+      },
+      {
+        "Name": "Desert Dwellers",
+        "Level": 1
+      },
+      {
+        "Name": "Naga Nomads",
+        "Level": 2
+      },
+      {
+        "Name": "Sand Spirits",
+        "Level": 2
+      },
+      {
+        "Name": "Arid Atrocities",
+        "Level": 3
+      },
+      {
+        "Name": "Amtephetes's Forces",
+        "Level": 3
+      },
+    ],
+    "Guardians": [
+      { "Name": "Amtephetes VII, The Wicked" }
+    ],
+    "Dungeon Rooms": [
+      {
+        "Name": "Dragon Blood Forest",
+        "Level": 1
+      },
+      {
+        "Name": "Merchant Caravan",
+        "Level": 1
+      },
+      {
+        "Name": "Naga Nest",
+        "Level": 2
+      },
+      {
+        "Name": "Oasis",
+        "Level": 2
+      },
+      {
+        "Name": "Chalk Desert",
+        "Level": 3
+      },
+      {
+        "Name": "Royal Tomb",
+        "Level": 3
+      }
+    ]
+  },
+  {
+    "Quest": "Clockwork Destiny",
+    "Code": "Q9",
+    "Sets": [
+      "New Horizons"
+    ],
+    "Heroes": [
+      {
+        "Name": "Tilka the Sculptor",
+        "Classes": [ "Rogue" ]
+      },
+      {
+        "Name": "Hamrulir Oakenborn",
+        "Classes": [ "Fighter" ]
+      },
+      {
+        "Name": "Liss",
+        "Classes": [ "Wizard" ]
+      },
+      {
+        "Name": "Baraqiel",
+        "Classes": [ "Cleric" ]
+      },
+      {
+        "Name": "Shenaris",
+        "Classes": [ "Cleric" ]
+      },
+      {
+        "Name": "Caslech",
+        "Classes": [ "Rogue" ]
+      }
+    ],
+    "Items": [
+      { "Name": "Crystal Light" },
+      { "Name": "Plate Armor" },
+      { "Name": "Thunderstone Elixer" },
+      { "Name": "Thunderstone Ore" },
+    ],
+    "Spells": [
+      { "Name": "Animate Dead" },
+      { "Name": "Construct Protector" },
+      { "Name": "Mend" },
+      { "Name": "Thunderstone Ritual" },
+      { "Name": "Transmutation" },
+    ],
+    "Weapons": [
+      { "Name": "Keltarian Bow" },
+      { "Name": "Thunderstone Hammer" },
+      { "Name": "Thunderstone Rod" },
+    ],
+    "Monsters": [
+      {
+        "Name": "Material Spirits",
+        "Level": 1
+      },
+      {
+        "Name": "Mystical Kobolds",
+        "Level": 1
+      },
+      {
+        "Name": "C.C.O.V. Gang",
+        "Level": 2
+      },
+      {
+        "Name": "Gremlins",
+        "Level": 2
+      },
+      {
+        "Name": "Automatons",
+        "Level": 3
+      },
+      {
+        "Name": "Mech Menaces",
+        "Level": 3
+      },
+    ],
+    "Guardians": [ { "Name": "Thavroh Anvilbane" } ],
+    "Dungeon Rooms": [
+      {
+        "Name": "Magic Mines",
+        "Level": 1
+      },
+      {
+        "Name": "Sacred Site",
+        "Level": 1
+      },
+      {
+        "Name": "Keltarian Laboratory",
+        "Level": 2
+      },
+      {
+        "Name": "Town Square",
+        "Level": 2
+      },
+      {
+        "Name": "Dark Forge",
+        "Level": 3
+      },
+      {
+        "Name": "Twilight Portal",
+        "Level": 3
+      },
+    ]
   }
 ];
 
