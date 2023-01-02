@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EP857M56JC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EP857M56JC');
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -12,16 +21,6 @@
 
   <!-- See https://goo.gl/OOhYW5 -->
   <link rel="manifest" href="manifest.json">
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11642955-23"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-11642955-23');
-  </script>
 
   <script>
     window.MyAppGlobals = { rootPath: '/tsqr/' };
@@ -36,7 +35,7 @@
     }
   </script>
 
-  <!-- 
+  <!--
       gh-pages seems to balk at the "@webcomponents" directory, so use the unpkg CDN
       instead, together with node-style module resolution in polymer.json.
     -->
