@@ -1,5 +1,10 @@
 # Thunderstone Quest Randomizer
 
+**Note:** This randomizer is deprecated. Please use [my newer one here instead](https://doctor-g.github.io/ThunderstoneQuestRandomizer/).
+
+---
+
+
 This web app is a randomizer for Thunderstone Quest. You can use it to generate sets of 
 cards for a random adventure.
 
